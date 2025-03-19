@@ -20,19 +20,14 @@ export default function Home() {
       },
       body: JSON.stringify({ username, password }),
     });
-    console.log(response);
     const data = await response.json();
     if (response.ok) {
-      console.log('success')
-      console.log(data)
       authContext.setUsername(username)
       authContext.setToken(data.token)
       // redirect to authenticated page
       router.push('/authenticated');
     
     } else {
-      console.log('error')
-      console.log(data)
       setFormError(data.detail ?? 'An unexpected error occurred')      
     }
   }
